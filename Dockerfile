@@ -1,5 +1,7 @@
 # Use the official Bitnami Keycloak image as the base
-FROM bitnami/keycloak:latest
+# Note: Bitnami stopped publishing to Docker Hub after Aug 2025
+# Using specific version tag for stability
+FROM bitnami/keycloak:26.0.7-debian-12-r0
 
 # Define an argument for the theme name, defaulting to 'caring-note'
 ARG THEME_NAME=caring-note
