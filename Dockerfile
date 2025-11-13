@@ -1,13 +1,13 @@
-# Use the official Bitnami Keycloak image as the base
-# Note: Bitnami stopped publishing to Docker Hub after Aug 2025
-# Using specific version tag for stability
-FROM bitnami/keycloak:26.0.7-debian-12-r0
+# Use Bitnami Legacy Keycloak image
+# Note: Bitnami moved existing images to bitnamilegacy namespace after Aug 2025
+# Using 26.3.3 for stability (compatible with Bitnami Helm charts)
+FROM bitnamilegacy/keycloak:26.3.3-debian-12-r0
 
 # Define an argument for the theme name, defaulting to 'caring-note'
 ARG THEME_NAME=caring-note
 
 # Copy the custom theme files into the Keycloak themes directory
-# The user needs to be root to copy into this directory
+# Bitnami image uses /opt/bitnami/keycloak path
 USER root
 COPY --chown=keycloak:keycloak theme/${THEME_NAME} /opt/bitnami/keycloak/themes/${THEME_NAME}
 
