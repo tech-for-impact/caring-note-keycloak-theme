@@ -11,6 +11,16 @@ on:
     branches:
       - main
       - develop
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to build from'
+        required: false
+        default: 'develop'
+        type: choice
+        options:
+          - develop
+          - main
 
 jobs:
   build:
