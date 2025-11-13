@@ -55,14 +55,12 @@ jobs:
         with:
           images: ${{ steps.repo.outputs.repository }}
           tags: |
-            type=schedule
-            type=ref,event=branch
-            type=ref,event=pr
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=sha
-            # set latest tag for default branch
-            type=raw,value=latest,enable={{is_default_branch}}
+            # Always tag as latest regardless of branch
+            # Repository separation (stage/prod) handles environment isolation
+            type=raw,value=latest
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
